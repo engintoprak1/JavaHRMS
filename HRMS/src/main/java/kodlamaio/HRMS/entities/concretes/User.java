@@ -8,9 +8,10 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+@Data
 @Entity
 @Table(name="users")
-@Data
+
 public class User {
 	
 	@Id
@@ -32,6 +33,13 @@ public class User {
 	public User(int id, String email, String password, boolean emailVerified) {
 		super();
 		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.emailVerified = emailVerified;
+	}
+	
+	public User(String email, String password, boolean emailVerified) {
+		super();
 		this.email = email;
 		this.password = password;
 		this.emailVerified = emailVerified;

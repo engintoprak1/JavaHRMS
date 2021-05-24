@@ -9,9 +9,9 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "job_seekers")
-@Data
 public class JobSeeker {
 	
 	@Id
@@ -29,6 +29,7 @@ public class JobSeeker {
 	
 	@Column(name = "date_of_birth")
 	private Date dateOfBirth;
+	
 	
 	public JobSeeker() {}
 	

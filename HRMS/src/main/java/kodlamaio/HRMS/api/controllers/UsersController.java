@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.HRMS.business.abstracts.UserService;
+import kodlamaio.HRMS.core.utilities.results.DataResult;
 import kodlamaio.HRMS.entities.concretes.User;
 
 @RestController
 @RequestMapping("/api/users")
 public class UsersController {
 	
-	UserService userService;
+	private UserService userService;
 	
 	@Autowired
 	public UsersController(UserService userService) {
@@ -23,7 +24,7 @@ public class UsersController {
 	}
 	
 	@GetMapping("/getall")
-	public List<User> getAll(){
+	public DataResult<List<User>> getAll(){
 		return this.userService.getAll();
 	}
 	
