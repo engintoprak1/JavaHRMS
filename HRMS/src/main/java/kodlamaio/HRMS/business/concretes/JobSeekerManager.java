@@ -1,11 +1,13 @@
 package kodlamaio.HRMS.business.concretes;
 
 import java.util.List;
+import java.util.UUID;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kodlamaio.HRMS.adapters.JobSeekerCheckService;
+
 import kodlamaio.HRMS.business.abstracts.JobSeekerService;
 import kodlamaio.HRMS.business.abstracts.UserService;
 import kodlamaio.HRMS.dataAccess.abstracts.JobSeekerDao;
@@ -19,16 +21,12 @@ public class JobSeekerManager implements JobSeekerService{
 
 	private JobSeekerDao jobSeekerDao;
 	private UserService userService;
-	private JobSeekerCheckService checkService;
-	private JobSeekerService jobSeekerService;
 	
 	@Autowired
-	public JobSeekerManager(JobSeekerDao jobSeekerDao, UserService userService, JobSeekerCheckService checkService,JobSeekerService jobSeekerService) {
+	public JobSeekerManager(JobSeekerDao jobSeekerDao, UserService userService) {
 		super();
 		this.jobSeekerDao = jobSeekerDao;
 		this.userService = userService;
-		this.checkService = checkService;
-		this.jobSeekerService = jobSeekerService;
 	}
 
 	@Override
@@ -39,31 +37,51 @@ public class JobSeekerManager implements JobSeekerService{
 	@Override
 	public Result register(JobSeekerForRegisterDto jobSeeker) {
 		
-		if(areAllFieldsFilled(jobSeeker) != null && checkService.checkIfRealPerson(jobSeeker) == false 
-				&& isEmailExist(jobSeeker) != null && isIdentityExist(jobSeeker) != null) {
-			return new ErrorResult("Kayıt gerçekleştirilemedi.");
-		}else {
-			User userToRegister = new User(jobSeeker.getEmail(),jobSeeker.getPassword(),false);
+		if(areAllFieldsFilled(jobSeeker).isSuccess() == false) {
 			
-			userService.register(userToRegister);
+			return new ErrorResult("Tüm alanlar doldurulmalıdır.");
+			
+		}if(isEmailExist(jobSeeker).isSuccess() == false) {
+			
+			return new ErrorResult("Bu e-posta adresi kullanılmaktadır.");
+			
+		}if(!isEmailFormat(jobSeeker.getEmail())) {
+			return new ErrorResult("E-postanız e-posta formatında olmalıdır.");
+		}
+		if(isIdentityExist(jobSeeker).isSuccess() == false) {
+			
+			return new ErrorResult("Bu kimlik numarası ile kullanıcı mevcut");
+			
+		}if(arePasswordsMatching(jobSeeker).isSuccess() == false) {
+			
+			return new ErrorResult("Şifreler uyuşmuyor.");
+			
+		}if(!this.mernisValidate(jobSeeker.getNationalityId(), jobSeeker.getFirstName(), jobSeeker.getLastName(), jobSeeker.getDateOfBirth().getYear()).isSuccess()){
+			
+			return new ErrorResult("Kimlik doğrulaması başarısız.");
+			
+		}
+		
+		
+		
+			User userToRegister = new User(jobSeeker.getEmail(),jobSeeker.getPassword(),false, UUID.randomUUID().toString());
+			
+			userService.add(userToRegister);
 			
 			JobSeeker jobSeekerToRegister = new JobSeeker(userToRegister.getId(),jobSeeker.getFirstName(),jobSeeker.
 					getLastName(),jobSeeker.getNationalityId(),jobSeeker.getDateOfBirth());
 			
 			jobSeekerDao.save(jobSeekerToRegister);
 			
-			return new SuccessResult("İş arayan kaydı başarılı.");
-		}
-		
+			return new SuccessResult("İş arayan kaydı başarılı. Lütfen e-posta adresinize gelen doğrulama kodunu giriniz.");
 	}
-	
-	
-	//iş kuralları
-	
+		
 	
 /* bütün alanların doldurulması zorunludur kuralı.
    .equals("") yapmamın sebebi = "" gibi boş bir string yolladığımızda null olmaz ve 
    veri girişi gerçekleşir bu sebeple boş string kontrolü de yapmamız gerekmektedir. */
+	
+// Tüm alanlar zorunludur. Kullanıcı bilgilendirilir.
 	
 	public Result areAllFieldsFilled(JobSeekerForRegisterDto jobSeeker) {
 		
@@ -76,48 +94,55 @@ public class JobSeekerManager implements JobSeekerService{
 				|| jobSeeker.getDateOfBirth() == null) 
 			
 				{
-					return new ErrorResult("Lütfen bilgileri eksiksiz doldurunuz.");
+					return new ErrorResult();
 				}else {
-					return null;
+					return new SuccessResult();
 				}
 	}
 	
-	@Override
-	public DataResult<JobSeeker> getByNationalityId(String userId) {
-		
-		JobSeeker jobSeeker = jobSeekerDao.findByNationalityId(userId);
-		
-		return new SuccessDataResult<JobSeeker>(jobSeeker);
+	private Result mernisValidate(String tckNo,String firstName, String lastName, int yearOfDate) {
+		return new SuccessResult();
 	}
 	
 	
-	public Result isEmailExist(JobSeekerForRegisterDto jobSeeker) {
+	private Result isEmailExist(JobSeekerForRegisterDto jobSeeker) {
 		
-		if(userService.getByEmail(jobSeeker.getEmail()) != null) {
-			return new ErrorResult("Bu e-posta zaten kullanılıyor.");
+		if(userService.getByEmail(jobSeeker.getEmail()).getData() != null) {
+			return new ErrorResult();
 		}else {
-			return null;
+			return new SuccessResult();
+		}
+	}
+	
+	private Result arePasswordsMatching(JobSeekerForRegisterDto jobSeeker) {
+		
+		if(!jobSeeker.getPassword().equals(jobSeeker.getVerifyPassword())) {
+			return new ErrorResult();
+		}else {
+			return new SuccessResult();
 		}
 		
 	}
 	
-	
-	public Result isIdentityExist(JobSeekerForRegisterDto jobSeeker) {
+	private Result isIdentityExist(JobSeekerForRegisterDto jobSeeker) {
 		
-		if(jobSeekerService.getByNationalityId(jobSeeker.getNationalityId()) != null) {
-			return new ErrorResult("Bu kimlik numarası kullanılıyor.");
+		if(jobSeekerDao.findByNationalityId(jobSeeker.getNationalityId()) != null) {
+			return new ErrorResult();
 		}else {
-			return null;
+			return new SuccessResult();
 		}
 		
 	}
 	
+	public static final Pattern VALID_EMAIL_ADDRESS_REGEX = 
+		    Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+	
+	private boolean isEmailFormat(String email) {
+		return VALID_EMAIL_ADDRESS_REGEX.matcher(email).find();
+	}
 	
 	
-
 	
-	
-
 	
 
 }

@@ -8,11 +8,12 @@ import org.springframework.stereotype.Service;
 import kodlamaio.HRMS.entities.concretes.dtos.JobSeekerForRegisterDto;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 
+@Service
 public class MernisServiceAdapter implements JobSeekerCheckService{
 
 	@Override
 	public boolean checkIfRealPerson(JobSeekerForRegisterDto jobSeeker) {
-		
+		System.out.println("x");
 		KPSPublicSoapProxy client = new KPSPublicSoapProxy();
 		
 		var result = true;

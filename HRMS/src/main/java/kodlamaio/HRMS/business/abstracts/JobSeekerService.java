@@ -8,10 +8,10 @@ import kodlamaio.HRMS.entities.concretes.JobSeeker;
 import kodlamaio.HRMS.entities.concretes.dtos.JobSeekerForRegisterDto;
 
 public interface JobSeekerService {
+	
 	DataResult<List<JobSeeker>> getAll();	
 	
-	Result register(JobSeekerForRegisterDto jobSeekerForRegisterDto);
-	
-	DataResult<JobSeeker> getByNationalityId(String nationalityId);
+	Result register(JobSeekerForRegisterDto jobSeeker);
+
 	
 }

@@ -7,10 +7,14 @@ import kodlamaio.HRMS.core.utilities.results.Result;
 import kodlamaio.HRMS.entities.concretes.User;
 
 public interface UserService {
+	
 	DataResult<List<User>> getAll();
 	
-	Result register(User user);
+	Result add(User user);
 	
 	DataResult<User> getByEmail(String email);
+	
+	Result verifyUser(String email, String verificationCode);
+	
 	
 }

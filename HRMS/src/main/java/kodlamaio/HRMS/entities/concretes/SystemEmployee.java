@@ -5,11 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
 @Entity
 @Table(name = "system_employees")
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class SystemEmployee {
 	
 	@Id
@@ -18,17 +22,5 @@ public class SystemEmployee {
 	
 	@Column(name = "role")
 	private String role;
-	
-	@Column(name = "company_verified")
-	private boolean companyVerified;
-	
-	public SystemEmployee() {}
-	
-	public SystemEmployee(int userId, String role, boolean companyVerified) {
-		super();
-		this.userId = userId;
-		this.role = role;
-		this.companyVerified = companyVerified;
-	}
 	
 }

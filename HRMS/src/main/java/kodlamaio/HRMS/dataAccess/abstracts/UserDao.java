@@ -7,6 +7,6 @@ import kodlamaio.HRMS.entities.concretes.User;
 public interface UserDao extends JpaRepository<User, Integer>{
 	
 	User findByEmail(String email);
-
 	
+	User findByEmailAndEmailVerifyCode(String email, String emailVerifyCode);
 }

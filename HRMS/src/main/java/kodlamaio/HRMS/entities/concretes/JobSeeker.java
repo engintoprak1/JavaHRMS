@@ -7,11 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "job_seekers")
+@AllArgsConstructor
+@NoArgsConstructor
 public class JobSeeker {
 	
 	@Id
@@ -31,15 +35,6 @@ public class JobSeeker {
 	private Date dateOfBirth;
 	
 	
-	public JobSeeker() {}
 	
-	public JobSeeker(int userId, String firstName, String lastName, String nationalityId, Date dateOfBirth) {
-		super();
-		this.userId = userId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.nationalityId = nationalityId;
-		this.dateOfBirth = dateOfBirth;
-	}
 	
 }

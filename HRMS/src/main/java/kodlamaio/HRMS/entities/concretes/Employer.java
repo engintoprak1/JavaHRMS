@@ -5,11 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
 @Entity
 @Table(name="employers")
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employer {
 	
 	@Id
@@ -25,14 +29,9 @@ public class Employer {
 	@Column(name="phone_number")
 	private String phoneNumber;
 	
-	public Employer() {}
+	@Column(name = "company_verified")
+	private boolean companyVerified;
 	
-	public Employer(int userId, String companyName, String webSite, String phoneNumber) {
-		super();
-		this.userId = userId;
-		this.companyName = companyName;
-		this.webSite = webSite;
-		this.phoneNumber = phoneNumber;
-	}
+	
 	
 }

@@ -3,19 +3,23 @@ package kodlamaio.HRMS.entities.concretes;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name="users")
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
@@ -28,21 +32,16 @@ public class User {
 	@Column(name = "email_verified")
 	private boolean emailVerified;
 	
-	public User() {}
+	@Column(name = "email_verify_code")
+	private String emailVerifyCode;
 	
-	public User(int id, String email, String password, boolean emailVerified) {
-		super();
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.emailVerified = emailVerified;
-	}
 	
-	public User(String email, String password, boolean emailVerified) {
+	public User(String email, String password, boolean emailVerified,String emailVerifyCode) {
 		super();
 		this.email = email;
 		this.password = password;
 		this.emailVerified = emailVerified;
+		this.emailVerifyCode = emailVerifyCode;
 	}
 	
 }

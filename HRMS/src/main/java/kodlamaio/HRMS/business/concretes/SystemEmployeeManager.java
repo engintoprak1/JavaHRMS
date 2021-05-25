@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.HRMS.business.abstracts.SystemEmployeeService;
+import kodlamaio.HRMS.core.utilities.results.DataResult;
+import kodlamaio.HRMS.core.utilities.results.SuccessDataResult;
 import kodlamaio.HRMS.dataAccess.abstracts.SystemEmployeeDao;
 import kodlamaio.HRMS.entities.concretes.SystemEmployee;
 
@@ -21,8 +23,8 @@ public class SystemEmployeeManager implements SystemEmployeeService{
 	}
 
 	@Override
-	public List<SystemEmployee> getAll() {
-		return this.employeeDao.findAll();
+	public DataResult<List<SystemEmployee>> getAll() {
+		return new SuccessDataResult<List<SystemEmployee>>(this.employeeDao.findAll(),"Listelendi.");
 	}
 
 }
