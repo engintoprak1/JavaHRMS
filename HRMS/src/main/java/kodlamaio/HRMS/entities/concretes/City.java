@@ -3,7 +3,6 @@ package kodlamaio.HRMS.entities.concretes;
 import java.util.List;
 
 import javax.persistence.Column;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,22 +19,21 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "job_positions")
+@Table(name = "cities")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdvertisements"})
-public class JobPosition {
+public class City {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "position_name")
-	private String positionName;
+	@Column(name = "city")
+	private String city;
 	
-	@OneToMany(mappedBy = "jobPosition",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "city",fetch = FetchType.LAZY)
 	private List<JobAdvertisement> jobAdvertisements;
-	
-	
+
 }

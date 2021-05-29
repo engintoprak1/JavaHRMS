@@ -107,6 +107,7 @@ public class JobSeekerManager implements JobSeekerService{
 	
 	private Result isEmailExist(JobSeekerForRegisterDto jobSeeker) {
 		
+		
 		if(userService.getByEmail(jobSeeker.getEmail()).getData() != null) {
 			return new ErrorResult();
 		}else {

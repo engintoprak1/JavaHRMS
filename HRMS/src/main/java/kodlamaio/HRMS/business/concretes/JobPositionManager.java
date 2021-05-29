@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.HRMS.business.abstracts.JobPositionService;
 import kodlamaio.HRMS.core.utilities.results.DataResult;
+import kodlamaio.HRMS.core.utilities.results.ErrorDataResult;
 import kodlamaio.HRMS.core.utilities.results.ErrorResult;
 import kodlamaio.HRMS.core.utilities.results.Result;
 import kodlamaio.HRMS.core.utilities.results.SuccessDataResult;
@@ -48,6 +49,18 @@ public class JobPositionManager implements JobPositionService{
 		}
 		
 		return new SuccessResult();
+	}
+
+	@Override
+	public DataResult<JobPosition> getById(int id) {
+		
+		JobPosition jobPosition = jobPositionDao.findById(id);
+		
+		if(jobPosition == null) {
+			return new ErrorDataResult<JobPosition>();
+		}
+		
+		return new SuccessDataResult<JobPosition>(jobPosition);
 	}
 
 }
