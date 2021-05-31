@@ -38,15 +38,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	@Override
 	public Result add(JobAdvertisementForAddDto jobAdvertisement) {
 		
-		if(!isJobDescriptionValid(jobAdvertisement.getJobDescription()).isSuccess()) {
-			return new ErrorResult("İş tanımı boş bırakılamaz.");
-		}if(!isJobPositionValid(jobAdvertisement.getJobPositionId()).isSuccess()) {
-			return new ErrorResult("İş pozisyonu hatalı.");
-		}if(!isCityValid(jobAdvertisement.getCityId()).isSuccess()) {
-			return new ErrorResult("Şehir bilgisi hatalı.");
-		}if(!isOpenPositionCountValid(jobAdvertisement.getOpenPositionCount()).isSuccess()) {
-			return new ErrorResult("Açık pozisyon adedi 0'dan küçük olamaz");
-		}if(!isEmployerExists(jobAdvertisement.getEmployerId()).isSuccess()) {
+		if(!isEmployerExists(jobAdvertisement.getEmployerId()).isSuccess()) {
 			return new ErrorResult("Böyle bir işveren yok.");
 		}if(!isMaxBiggerThanMin(jobAdvertisement.getMaxSalary(),jobAdvertisement.getMinSalary()).isSuccess()) {
 			return new ErrorResult("Minimum maaş maximum maaştan fazla olamaz.");
@@ -102,39 +94,6 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessResult("İş ilanı başarıyla kaldırıldı.");
 	}
 	
-	private Result isJobDescriptionValid(String jobDescription) {
-		if(jobDescription == null || jobDescription.equals("")) {
-			return new ErrorResult();
-		}
-		return new SuccessResult();
-	}
-	
-	private Result isJobPositionValid(int id) {
-		if(id<=0) {
-			return new ErrorResult();
-		}if(jobPositionService.getById(id).getData() == null) {
-			return new ErrorResult();
-		}
-		return new SuccessResult();
-	}
-	
-	private Result isCityValid(int id) {
-		if(id <= 0) {
-			return new ErrorResult();
-		}if(cityService.getById(id).getData() == null) {
-			return new ErrorResult();
-		}
-		return new SuccessResult();
-	}
-	
-	private Result isOpenPositionCountValid(int count) {
-		
-		if(count <= 0) {
-			return new ErrorResult();
-		}
-		return new SuccessResult();
-		
-	}
 	
 	private Result isEmployerExists(int id) {
 		if (id <= 0 || employerService.getById(id).getData() == null) {

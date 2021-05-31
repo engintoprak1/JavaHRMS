@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.HRMS.business.abstracts.UserService;
+import kodlamaio.HRMS.core.dataAccess.UserDao;
+import kodlamaio.HRMS.core.entities.User;
 import kodlamaio.HRMS.core.utilities.helpers.email.EmailService;
 import kodlamaio.HRMS.core.utilities.results.DataResult;
 import kodlamaio.HRMS.core.utilities.results.ErrorResult;
 import kodlamaio.HRMS.core.utilities.results.Result;
 import kodlamaio.HRMS.core.utilities.results.SuccessDataResult;
 import kodlamaio.HRMS.core.utilities.results.SuccessResult;
-import kodlamaio.HRMS.dataAccess.abstracts.UserDao;
-import kodlamaio.HRMS.entities.concretes.User;
 
 
 @Service

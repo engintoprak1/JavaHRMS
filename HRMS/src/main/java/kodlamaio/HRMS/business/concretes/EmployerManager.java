@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.HRMS.business.abstracts.EmployerService;
 import kodlamaio.HRMS.business.abstracts.UserService;
+import kodlamaio.HRMS.core.entities.User;
 import kodlamaio.HRMS.core.utilities.results.DataResult;
 import kodlamaio.HRMS.core.utilities.results.ErrorDataResult;
 import kodlamaio.HRMS.core.utilities.results.ErrorResult;
@@ -16,7 +17,6 @@ import kodlamaio.HRMS.core.utilities.results.SuccessDataResult;
 import kodlamaio.HRMS.core.utilities.results.SuccessResult;
 import kodlamaio.HRMS.dataAccess.abstracts.EmployerDao;
 import kodlamaio.HRMS.entities.concretes.Employer;
-import kodlamaio.HRMS.entities.concretes.User;
 import kodlamaio.HRMS.entities.concretes.dtos.EmployerForRegisterDto;
 
 @Service
@@ -40,9 +40,7 @@ public class EmployerManager implements EmployerService{
 	@Override
 	public Result register(EmployerForRegisterDto employer) {
 		
-		if(areAllFieldsFilled(employer).isSuccess() == false) {
-			return new ErrorResult("Tüm alanlar doldurulmalıdır.");
-		}if(isEmailExists(employer).isSuccess() == false) {
+		if(isEmailExists(employer).isSuccess() == false) {
 			return new ErrorResult("Bu e-posta adresi kullanılmaktadır.");
 		}if(arePasswordsMatching(employer).isSuccess() == false) {
 			return new ErrorResult("Şifreler uyuşmuyor.");
@@ -62,27 +60,6 @@ public class EmployerManager implements EmployerService{
 		
 	}
 	
-/* 	bütün alanların doldurulması zorunludur kuralı.
-	   .equals("") yapmamın sebebi = "" gibi boş bir string yolladığımızda null olmaz ve 
-	   veri girişi gerçekleşir bu sebeple boş string kontrolü de yapmamız gerekmektedir. */
-	
-//	Tüm alanlar zorunludur. Kullanıcı bilgilendirilir.
-	
-	private Result areAllFieldsFilled(EmployerForRegisterDto employer) {
-		
-		if(employer.getCompanyName() == null || employer.getCompanyName().equals("") 
-				|| employer.getEmail() == null ||employer.getEmail().equals("")
-				|| employer.getPassword() == null || employer.getPassword().equals("")
-				|| employer.getVerifyPassword() == null || employer.getVerifyPassword().equals("")
-				|| employer.getPhoneNumber() == null || employer.getPhoneNumber().equals("")
-				|| employer.getWebSite() == null || employer.getWebSite().equals("")) 
-		{
-			return new ErrorResult();	
-		}else {
-			return new SuccessResult();
-		}
-		
-	}
 	
 	private Result isEmailandWebsiteDomainSame(EmployerForRegisterDto employer) {
 		String email = employer.getEmail();
@@ -126,19 +103,4 @@ public class EmployerManager implements EmployerService{
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

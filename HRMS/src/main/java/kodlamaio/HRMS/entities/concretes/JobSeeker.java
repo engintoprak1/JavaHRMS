@@ -35,6 +35,4 @@ public class JobSeeker {
 	private Date dateOfBirth;
 	
 	
-	
-	
 }

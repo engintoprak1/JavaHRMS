@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.HRMS.business.abstracts.UserService;
+import kodlamaio.HRMS.core.entities.User;
 import kodlamaio.HRMS.core.utilities.results.DataResult;
 import kodlamaio.HRMS.core.utilities.results.Result;
-import kodlamaio.HRMS.entities.concretes.User;
 
 @RestController
 @RequestMapping("/api/users")
@@ -35,5 +35,6 @@ public class UsersController {
 	public Result verify(@RequestBody String email, String verifyCode) {
 		return userService.verifyUser(email, verifyCode);
 	}
+	
 	
 }
