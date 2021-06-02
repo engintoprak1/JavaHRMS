@@ -12,6 +12,7 @@ public interface JobSeekerService {
 	DataResult<List<JobSeeker>> getAll();	
 	
 	Result register(JobSeekerForRegisterDto jobSeeker);
-
+	
+	Result addCv();
 	
 }

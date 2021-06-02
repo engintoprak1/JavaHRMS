@@ -105,6 +105,12 @@ public class JobSeekerManager implements JobSeekerService{
 		}
 		
 	}
+
+	@Override
+	public Result addCv() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }
