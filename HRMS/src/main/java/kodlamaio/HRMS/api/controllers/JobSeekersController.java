@@ -23,7 +23,7 @@ import kodlamaio.HRMS.business.abstracts.JobSeekerService;
 import kodlamaio.HRMS.core.utilities.results.DataResult;
 import kodlamaio.HRMS.core.utilities.results.ErrorDataResult;
 import kodlamaio.HRMS.entities.concretes.JobSeeker;
-import kodlamaio.HRMS.entities.concretes.dtos.JobSeekerForRegisterDto;
+import kodlamaio.HRMS.entities.dtos.JobSeekerForRegisterDto;
 
 @RestController
 @RequestMapping("/api/jobSeekers")
@@ -44,8 +44,9 @@ public class JobSeekersController {
 	
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@Valid @RequestBody JobSeekerForRegisterDto jobSeeker) {
-		return ResponseEntity.ok(this.jobSeekerService.register(jobSeeker));
+		return ResponseEntity.ok(this.jobSeekerService.registerForJobSeeker(jobSeeker));
 	}
+	
 	
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)

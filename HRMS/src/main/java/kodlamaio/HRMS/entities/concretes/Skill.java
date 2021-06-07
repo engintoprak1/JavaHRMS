@@ -7,10 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,17 +25,15 @@ public class Skill {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
+	@Column(name = "skill_id")
+	private int skillId;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "skill_name")
+	private String skillName;
 	
-	@ManyToMany()
-	@JoinTable(
-			 name = "cv_skills", 
-			 joinColumns = @JoinColumn(name = "skill_id"), 
-			 inverseJoinColumns = @JoinColumn(name = "cv_id"))
-	 private Set<Cv> cvs;
-	
+
+	@OneToMany(mappedBy="skill")
+	@JsonIgnore
+	Set<CvSkill> cvSkills;
+
 }

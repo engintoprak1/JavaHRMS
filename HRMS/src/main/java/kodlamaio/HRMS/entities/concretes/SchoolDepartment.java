@@ -1,7 +1,7 @@
 package kodlamaio.HRMS.entities.concretes;
 
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,18 +29,19 @@ public class SchoolDepartment {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
+	@Column(name = "department_id")
+	private int departmentId;
 	
 	@Column(name = "department_name")
 	private String departmentName;
 	
-	@OneToMany(mappedBy = "schoolDepartment",fetch = FetchType.LAZY)
-	private List<JobSeekerSchoolDepartment> jobSeekerSchoolDepartments;
+	@OneToMany(mappedBy = "schoolDepartment")
+	@JsonIgnore
+	Set<JobSeekerSchoolDepartment> jobSeekerSchoolDepartments;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "school_id")
+	@JsonIgnore
 	private School school;
-	
 	
 }

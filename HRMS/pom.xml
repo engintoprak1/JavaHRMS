@@ -9,11 +9,11 @@
 		<version>2.4.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>kodlamaio</groupId>
-	<artifactId>HRMS</artifactId>
+	<groupId>com.kodlama.io</groupId>
+	<artifactId>hrms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>HRMS</name>
-	<description>Demo project for Spring Boot</description>
+	<name>hrms</name>
+	<description>Human Resources Management Systems</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -59,9 +59,19 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.cloudinary</groupId>
+			<artifactId>cloudinary-http44</artifactId>
+			<version>1.17.0</version>
 		</dependency>
 	</dependencies>
 
@@ -76,7 +86,9 @@
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
+
 					</excludes>
+
 				</configuration>
 			</plugin>
 		</plugins>

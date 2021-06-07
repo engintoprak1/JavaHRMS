@@ -4,13 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,14 +35,24 @@ public class JobExperience {
 	@Column(name="position")
 	private String position;
 	
-	@Column(name="start_date")
-	private Date startDate;
+	@Column(name="job_start_date")
+	private Date jobStartDate;
 	
 	@Column(name="departure_date")
 	private Date departureDate;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "cv_id")
+	@JsonIgnore
 	private Cv cv;
 	
+	
+	public JobExperience(String workplaceName, String position, Date jobStartDate, Date departureDate, Cv cv) {
+		super();
+		this.workplaceName = workplaceName;
+		this.position = position;
+		this.jobStartDate = jobStartDate;
+		this.departureDate = departureDate;
+		this.cv = cv;
+	}
 }

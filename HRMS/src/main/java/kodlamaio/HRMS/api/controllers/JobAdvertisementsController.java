@@ -26,16 +26,16 @@ import kodlamaio.HRMS.core.utilities.results.DataResult;
 import kodlamaio.HRMS.core.utilities.results.ErrorDataResult;
 import kodlamaio.HRMS.core.utilities.results.Result;
 import kodlamaio.HRMS.entities.concretes.JobAdvertisement;
-import kodlamaio.HRMS.entities.concretes.dtos.JobAdvertisementForAddDto;
+import kodlamaio.HRMS.entities.dtos.JobAdvertisementForAddDto;
 
 @RestController
 @RequestMapping("/api/jobAdvertisements")
-public class JobAdvertisementController {
+public class JobAdvertisementsController {
 	
 	JobAdvertisementService jobAdvertisementService;
 	
 	@Autowired
-	public JobAdvertisementController(JobAdvertisementService jobAdvertisementService) {
+	public JobAdvertisementsController(JobAdvertisementService jobAdvertisementService) {
 		this.jobAdvertisementService = jobAdvertisementService;
 	}
 	

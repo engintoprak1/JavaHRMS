@@ -1,20 +1,18 @@
 package kodlamaio.HRMS.entities.concretes;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,20 +42,30 @@ public class Cv {
 	@Column(name="cover_letter")
 	private String coverLetter;
 	
-	@OneToOne(mappedBy = "cv")
+	@ManyToOne()
+	@JoinColumn(name = "job_seeker_id")
+	@JsonIgnore
 	private JobSeeker jobSeeker;
 	
-	@OneToMany(mappedBy = "cv",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "cv")
+	@JsonIgnore
 	private List<JobExperience> jobExperiences;
 	
-	@OneToMany(mappedBy = "cv",fetch = FetchType.LAZY)
-	private List<ForeignLanguage> foreignLanguages;
+	@OneToMany(mappedBy = "cv")
+	@JsonIgnore
+	private List<CvForeignLanguage> cvForeignLanguages;
 	
-	 @ManyToMany()
-	 @JoinTable(
-			   name = "cv_skills", 
-			   joinColumns = @JoinColumn(name = "cv_id"), 
-			   inverseJoinColumns = @JoinColumn(name = "skill_id"))
-	 private Set<Cv> resumes;
+	@OneToMany(mappedBy = "cv")
+	@JsonIgnore
+	private List<CvSkill> cvSkills;
+	
+	public Cv(String photo, String githubAddress, String linkedinAddress, String coverLetter,JobSeeker jobSeeker) {
+		super();
+		this.photo = photo;
+		this.githubAddress = githubAddress;
+		this.linkedinAddress = linkedinAddress;
+		this.coverLetter = coverLetter;
+		this.jobSeeker = jobSeeker;
+	}
 	
 }

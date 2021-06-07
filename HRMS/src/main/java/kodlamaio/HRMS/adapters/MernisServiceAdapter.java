@@ -5,7 +5,7 @@ import java.util.Locale;
 
 import org.springframework.stereotype.Service;
 
-import kodlamaio.HRMS.entities.concretes.dtos.JobSeekerForRegisterDto;
+import kodlamaio.HRMS.entities.dtos.JobSeekerForRegisterDto;
 import tr.gov.nvi.tckimlik.WS.KPSPublicSoapProxy;
 
 @Service

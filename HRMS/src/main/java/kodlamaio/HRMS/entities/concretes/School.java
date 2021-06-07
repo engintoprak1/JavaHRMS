@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,6 +29,7 @@ public class School {
 	@Column(name = "school_name")
 	private String schoolName;
 	
-	@OneToMany(mappedBy = "school",fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "school")
 	private List<SchoolDepartment> schoolDepartments;
+
 }

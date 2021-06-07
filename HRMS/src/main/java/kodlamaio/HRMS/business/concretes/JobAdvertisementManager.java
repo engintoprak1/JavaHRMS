@@ -17,7 +17,7 @@ import kodlamaio.HRMS.core.utilities.results.SuccessDataResult;
 import kodlamaio.HRMS.core.utilities.results.SuccessResult;
 import kodlamaio.HRMS.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.HRMS.entities.concretes.JobAdvertisement;
-import kodlamaio.HRMS.entities.concretes.dtos.JobAdvertisementForAddDto;
+import kodlamaio.HRMS.entities.dtos.JobAdvertisementForAddDto;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService{

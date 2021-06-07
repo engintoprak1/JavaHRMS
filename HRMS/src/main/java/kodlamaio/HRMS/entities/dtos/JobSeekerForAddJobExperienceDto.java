@@ -1,9 +1,7 @@
-package kodlamaio.HRMS.entities.concretes.dtos;
+package kodlamaio.HRMS.entities.dtos;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -14,17 +12,20 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobSeekerForAddCvDto {
-	
-	@NotNull
-	@Min(value = 1)
-	private int schoolId;
-	
-	
+public class JobSeekerForAddJobExperienceDto {
+
+
 	@NotNull
 	@NotBlank
-	private Date startDate;
-	
-	private Date graduationDate;
-	
+	private String workplaceName;
+
+	@NotNull
+	@NotBlank
+	private String position;
+
+	@NotNull
+	private Date jobStartDate;
+
+	private Date departureDate;
+
 }

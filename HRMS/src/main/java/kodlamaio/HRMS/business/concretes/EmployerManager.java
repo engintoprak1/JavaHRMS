@@ -17,7 +17,7 @@ import kodlamaio.HRMS.core.utilities.results.SuccessDataResult;
 import kodlamaio.HRMS.core.utilities.results.SuccessResult;
 import kodlamaio.HRMS.dataAccess.abstracts.EmployerDao;
 import kodlamaio.HRMS.entities.concretes.Employer;
-import kodlamaio.HRMS.entities.concretes.dtos.EmployerForRegisterDto;
+import kodlamaio.HRMS.entities.dtos.EmployerForRegisterDto;
 
 @Service
 public class EmployerManager implements EmployerService{
@@ -38,7 +38,7 @@ public class EmployerManager implements EmployerService{
 	}
 
 	@Override
-	public Result register(EmployerForRegisterDto employer) {
+	public Result registerForEmployer(EmployerForRegisterDto employer) {
 		
 		if(isEmailExists(employer).isSuccess() == false) {
 			return new ErrorResult("Bu e-posta adresi kullanılmaktadır.");

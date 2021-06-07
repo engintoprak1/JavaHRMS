@@ -1,17 +1,20 @@
 package kodlamaio.HRMS.entities.concretes;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import kodlamaio.HRMS.core.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,12 +42,17 @@ public class JobSeeker {
 	@Column(name = "date_of_birth")
 	private Date dateOfBirth;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cv_id",referencedColumnName = "id")
-	private Cv cv;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	@OneToMany(mappedBy = "jobSeeker")
-	private List<JobSeekerSchoolDepartment> jobSeekerSchoolDepartments;
+	@JsonIgnore
+	Set<Cv> cvs;
+	
+	@OneToMany(mappedBy = "jobSeeker")
+	@JsonIgnore
+	Set<JobSeekerSchoolDepartment> jobSeekerSchoolDepartments;
 	
 	
 	public JobSeeker(int userId,String firstName, String lastName, String nationalityId, Date dateOfBirth) {

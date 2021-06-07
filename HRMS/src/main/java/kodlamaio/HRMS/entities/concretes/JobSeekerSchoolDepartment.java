@@ -5,7 +5,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,19 +26,28 @@ public class JobSeekerSchoolDepartment{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="job_seeker_school_department_id")
-	private int jobSeekerSchoolDepartmentId;
+	private int id;
 	
-	@Column(name="start_date")
-	private Date startDate;
+	@Column(name="school_start_date")
+	private Date schoolStartDate;
 	
 	@Column(name="graduation_date")
 	private Date graduationDate;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "job_seeker_id")
 	private JobSeeker jobSeeker;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "school_department_id")
 	private SchoolDepartment schoolDepartment;
+
+	public JobSeekerSchoolDepartment(JobSeeker jobSeeker,SchoolDepartment schoolDepartment, Date schoolStartDate, Date graduationDate){
+		super();
+		this.schoolStartDate = schoolStartDate;
+		this.graduationDate = graduationDate;
+		this.jobSeeker = jobSeeker;
+		this.schoolDepartment = schoolDepartment;
+	}
+	
 }

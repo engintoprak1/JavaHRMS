@@ -1,11 +1,8 @@
-package kodlamaio.HRMS.entities.concretes.dtos;
-
-import java.util.Date;
+package kodlamaio.HRMS.entities.dtos;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,21 +11,19 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobSeekerForRegisterDto {
+public class EmployerForRegisterDto {
 	
 	@NotNull
 	@NotBlank
-	private String firstName;
+	private String companyName;
 	
 	@NotNull
 	@NotBlank
-	private String lastName;
+	private String webSite;
 	
 	@NotNull
 	@NotBlank
-	private String nationalityId;
-	
-	private Date dateOfBirth;
+	private String phoneNumber;
 	
 	@Email
 	@NotNull

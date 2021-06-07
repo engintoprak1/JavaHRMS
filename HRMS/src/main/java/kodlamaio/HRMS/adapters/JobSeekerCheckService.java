@@ -1,6 +1,6 @@
 package kodlamaio.HRMS.adapters;
 
-import kodlamaio.HRMS.entities.concretes.dtos.JobSeekerForRegisterDto;
+import kodlamaio.HRMS.entities.dtos.JobSeekerForRegisterDto;
 
 public interface JobSeekerCheckService {
 	
