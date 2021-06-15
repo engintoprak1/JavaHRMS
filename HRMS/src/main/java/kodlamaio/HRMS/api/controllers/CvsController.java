@@ -11,13 +11,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.HRMS.business.abstracts.CvService;
 import kodlamaio.HRMS.core.utilities.results.DataResult;
@@ -28,6 +29,7 @@ import kodlamaio.HRMS.entities.dtos.JobSeekerForAddCvDto;
 
 @RestController
 @RequestMapping("/api/cvs")
+@CrossOrigin
 public class CvsController {
 	
 	private CvService cvService;
@@ -39,8 +41,9 @@ public class CvsController {
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> addNewCv(@Valid @RequestBody JobSeekerForAddCvDto cv) {
+	public ResponseEntity<?> addNewCv(@Valid JobSeekerForAddCvDto cv) {
 		return ResponseEntity.ok(cvService.add(cv));
+		
 	}
 	
 	@GetMapping("/getall")

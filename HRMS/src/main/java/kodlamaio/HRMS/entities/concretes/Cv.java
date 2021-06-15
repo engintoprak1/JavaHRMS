@@ -1,5 +1,6 @@
 package kodlamaio.HRMS.entities.concretes;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -30,10 +31,7 @@ public class Cv {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="photo")
-	private String photo;
-	
-	@Column(name="github_adress")
+	@Column(name="github_address")
 	private String githubAddress;
 	
 	@Column(name="linkedin_address")
@@ -41,6 +39,12 @@ public class Cv {
 	
 	@Column(name="cover_letter")
 	private String coverLetter;
+	
+	@Column(name = "create_date")
+	private Date createDate;
+	
+	@Column(name="photo")
+	private String photo;
 	
 	@ManyToOne()
 	@JoinColumn(name = "job_seeker_id")
@@ -59,13 +63,15 @@ public class Cv {
 	@JsonIgnore
 	private List<CvSkill> cvSkills;
 	
-	public Cv(String photo, String githubAddress, String linkedinAddress, String coverLetter,JobSeeker jobSeeker) {
+	public Cv(String githubAddress, String linkedinAddress, String coverLetter,String photo, JobSeeker jobSeeker) {
 		super();
-		this.photo = photo;
 		this.githubAddress = githubAddress;
 		this.linkedinAddress = linkedinAddress;
 		this.coverLetter = coverLetter;
+		this.createDate = new Date();
+		this.photo = photo;
 		this.jobSeeker = jobSeeker;
+		
 	}
 	
 }

@@ -1,6 +1,6 @@
 package kodlamaio.HRMS.entities.concretes;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 import javax.persistence.Column;
@@ -29,10 +29,10 @@ public class JobSeekerSchoolDepartment{
 	private int id;
 	
 	@Column(name="school_start_date")
-	private Date schoolStartDate;
+	private LocalDate schoolStartDate;
 	
 	@Column(name="graduation_date")
-	private Date graduationDate;
+	private LocalDate graduationDate;
 	
 	@ManyToOne()
 	@JoinColumn(name = "job_seeker_id")
@@ -42,7 +42,7 @@ public class JobSeekerSchoolDepartment{
 	@JoinColumn(name = "school_department_id")
 	private SchoolDepartment schoolDepartment;
 
-	public JobSeekerSchoolDepartment(JobSeeker jobSeeker,SchoolDepartment schoolDepartment, Date schoolStartDate, Date graduationDate){
+	public JobSeekerSchoolDepartment(JobSeeker jobSeeker,SchoolDepartment schoolDepartment, LocalDate schoolStartDate, LocalDate graduationDate){
 		super();
 		this.schoolStartDate = schoolStartDate;
 		this.graduationDate = graduationDate;

@@ -1,6 +1,6 @@
 package kodlamaio.HRMS.entities.dtos;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -28,7 +28,7 @@ public class JobSeekerForRegisterDto {
 	@NotBlank
 	private String nationalityId;
 	
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	
 	@Email
 	@NotNull

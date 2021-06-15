@@ -1,6 +1,6 @@
 package kodlamaio.HRMS.entities.concretes;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -40,7 +40,7 @@ public class JobSeeker {
 	private String nationalityId;
 	
 	@Column(name = "date_of_birth")
-	private Date dateOfBirth;
+	private LocalDate dateOfBirth;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
@@ -55,7 +55,7 @@ public class JobSeeker {
 	Set<JobSeekerSchoolDepartment> jobSeekerSchoolDepartments;
 	
 	
-	public JobSeeker(int userId,String firstName, String lastName, String nationalityId, Date dateOfBirth) {
+	public JobSeeker(int userId,String firstName, String lastName, String nationalityId, LocalDate dateOfBirth) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;

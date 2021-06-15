@@ -1,6 +1,6 @@
 package kodlamaio.HRMS.entities.dtos;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.validation.constraints.NotNull;
 
@@ -22,7 +22,7 @@ public class JobSeekerForAddSchoolDepartmentDto {
 	private JobSeeker jobSeeker;
 	
 	@NotNull
-	private Date schoolStartDate;
+	private LocalDate schoolStartDate;
 	
-	private Date graduationDate;
+	private LocalDate graduationDate;
 }

@@ -1,5 +1,6 @@
 package kodlamaio.HRMS.entities.dtos;
 
+import java.util.Date;
 import java.util.List;
 
 import kodlamaio.HRMS.entities.concretes.JobExperience;
@@ -17,6 +18,7 @@ public class CvWithDetailsDto {
     private String githubAddress;
     private String linkedinAddress;
     private String coverLetter;
+    private Date createDate;
     private String photo;
     private JobSeeker jobSeeker;
     
@@ -25,14 +27,16 @@ public class CvWithDetailsDto {
     private List<ForeignLanguageWithDetailsDto> foreignLanguages;
     private List<SkillWithDetailsDto> skills;
     
-	public CvWithDetailsDto(int id, String githubAddress, String linkedinAddress, String coverLetter, String photo,
+	public CvWithDetailsDto(int id, String githubAddress, String linkedinAddress, String coverLetter,Date createDate,String photo,
 			JobSeeker jobSeeker) {
 		super();
 		this.id = id;
 		this.githubAddress = githubAddress;
 		this.linkedinAddress = linkedinAddress;
 		this.coverLetter = coverLetter;
+		this.createDate = createDate;
 		this.photo = photo;
 		this.jobSeeker = jobSeeker;
+		
 	}
 }

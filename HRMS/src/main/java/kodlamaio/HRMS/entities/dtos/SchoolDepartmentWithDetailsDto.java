@@ -1,6 +1,6 @@
 package kodlamaio.HRMS.entities.dtos;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,9 +13,9 @@ public class SchoolDepartmentWithDetailsDto {
 	
 	private String departmentName;
 	
-	private Date schoolStartDate;
+	private LocalDate schoolStartDate;
 	
-	private Date graduationDate;
+	private LocalDate graduationDate;
 	
 	private String schoolName;
 	

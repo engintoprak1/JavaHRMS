@@ -66,9 +66,7 @@ public class JobSeekerManager implements JobSeekerService {
 
 		userService.add(userToRegister);
 
-		JobSeeker jobSeekerToRegister = new JobSeeker(userToRegister.getId(), jobSeekerForRegisterDto.getFirstName(),
-				jobSeekerForRegisterDto.getLastName(), jobSeekerForRegisterDto.getNationalityId(),
-				jobSeekerForRegisterDto.getDateOfBirth());
+		JobSeeker jobSeekerToRegister = new JobSeeker(userToRegister.getId(),jobSeekerForRegisterDto.getFirstName(),jobSeekerForRegisterDto.getLastName(),jobSeekerForRegisterDto.getNationalityId(),jobSeekerForRegisterDto.getDateOfBirth());
 
 		jobSeekerDao.save(jobSeekerToRegister);
 

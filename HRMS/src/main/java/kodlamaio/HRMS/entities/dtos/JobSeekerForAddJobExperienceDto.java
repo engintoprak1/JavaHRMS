@@ -1,6 +1,6 @@
 package kodlamaio.HRMS.entities.dtos;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -24,8 +24,8 @@ public class JobSeekerForAddJobExperienceDto {
 	private String position;
 
 	@NotNull
-	private Date jobStartDate;
+	private LocalDate jobStartDate;
 
-	private Date departureDate;
+	private LocalDate departureDate;
 
 }
