@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class JobSeekerForAddCvDto {
 	
-	private String githubAdress;
+	private String githubAddress;
 	
-	private String linkedinAdress;
+	private String linkedinAddress;
 
 	private String coverLetter;
 	

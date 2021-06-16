@@ -56,7 +56,7 @@ public class CvManager implements CvService{
 
 	@Override
 	public DataResult<CvWithDetailsDto> getCvWithDetails(int id) {
-		CvWithDetailsDto cv = this.cvDao.findCvWithDetailsById(id);
+		CvWithDetailsDto cv = this.cvDao.getCvWithDetailsById(id);
 		
 		if(cv==null) {
 			return new ErrorDataResult<CvWithDetailsDto>();
@@ -84,7 +84,7 @@ public class CvManager implements CvService{
 		
 		JobSeeker jobSeeker = this.jobSeekerService.getById(cv.getJobSeekerId()).getData();
 		
-		Cv cvToAdd = new Cv(cv.getGithubAdress(),cv.getLinkedinAdress(),cv.getCoverLetter(),this.fileService.upload(cv.getPhoto()),jobSeeker);
+		Cv cvToAdd = new Cv(cv.getGithubAddress(),cv.getLinkedinAddress(),cv.getCoverLetter(),this.fileService.upload(cv.getPhoto()),jobSeeker);
 		
 		cvDao.save(cvToAdd);
 		

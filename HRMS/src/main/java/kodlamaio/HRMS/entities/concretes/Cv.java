@@ -40,7 +40,7 @@ public class Cv {
 	@Column(name="cover_letter")
 	private String coverLetter;
 	
-	@Column(name = "create_date")
+	@Column(name = "create_date", nullable = false)
 	private Date createDate;
 	
 	@Column(name="photo")
