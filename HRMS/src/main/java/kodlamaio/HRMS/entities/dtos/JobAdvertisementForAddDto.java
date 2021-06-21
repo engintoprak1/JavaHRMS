@@ -44,5 +44,6 @@ public class JobAdvertisementForAddDto {
 	
 	private Date applicationDeadline;
 	private boolean isActive;
+	private int workingTime;
 	
 }

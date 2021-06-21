@@ -54,7 +54,8 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 				true,
 				cityService.getById(jobAdvertisement.getCityId()).getData(),
 				jobPositionService.getById(jobAdvertisement.getJobPositionId()).getData(),
-				employerService.getById(jobAdvertisement.getEmployerId()).getData());
+				employerService.getById(jobAdvertisement.getEmployerId()).getData(),
+				jobAdvertisement.getWorkingTime());
       
 				
 		jobAdvertisementDao.save(jobAdvertisementToAdd);
