@@ -46,6 +46,9 @@ public class Cv {
 	@Column(name="photo")
 	private String photo;
 	
+	@Column(name="cv_title")
+	private String cvTitle;
+	
 	@ManyToOne()
 	@JoinColumn(name = "job_seeker_id")
 	@JsonIgnore
@@ -63,7 +66,8 @@ public class Cv {
 	@JsonIgnore
 	private List<CvSkill> cvSkills;
 	
-	public Cv(String githubAddress, String linkedinAddress, String coverLetter,String photo, JobSeeker jobSeeker) {
+	
+	public Cv(String githubAddress, String linkedinAddress, String coverLetter,String photo,String cvTitle ,JobSeeker jobSeeker) {
 		super();
 		this.githubAddress = githubAddress;
 		this.linkedinAddress = linkedinAddress;

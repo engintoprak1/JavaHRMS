@@ -25,6 +25,8 @@ public class JobSeekerForAddCvDto {
 	
 	private int jobSeekerId;
 	
+	private String cvTitle;
+	
 	@Valid
 	private List<JobSeekerForAddJobExperienceDto> jobExperiences;
 	

@@ -55,7 +55,9 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 				cityService.getById(jobAdvertisement.getCityId()).getData(),
 				jobPositionService.getById(jobAdvertisement.getJobPositionId()).getData(),
 				employerService.getById(jobAdvertisement.getEmployerId()).getData(),
-				jobAdvertisement.getWorkingTime());
+				jobAdvertisement.getWorkingTime(),
+				jobAdvertisement.getWorkingType(),
+				false);
       
 				
 		jobAdvertisementDao.save(jobAdvertisementToAdd);
@@ -95,6 +97,11 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessResult("İş ilanı başarıyla kaldırıldı.");
 	}
 	
+	@Override
+	public DataResult<List<JobAdvertisement>> findByApprovedTrueAndIsActiveTrue() {
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.findByApprovedTrueAndIsActiveTrue());
+	}
+	
 	
 	private Result isEmployerExists(int id) {
 		if (id <= 0 || employerService.getById(id).getData() == null) {
@@ -120,6 +127,8 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 		return new SuccessResult();
 		
 	}
+
+	
 
 	
 

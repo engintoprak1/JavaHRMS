@@ -84,7 +84,7 @@ public class CvManager implements CvService{
 		
 		JobSeeker jobSeeker = this.jobSeekerService.getById(cv.getJobSeekerId()).getData();
 		
-		Cv cvToAdd = new Cv(cv.getGithubAddress(),cv.getLinkedinAddress(),cv.getCoverLetter(),this.fileService.upload(cv.getPhoto()),jobSeeker);
+		Cv cvToAdd = new Cv(cv.getGithubAddress(),cv.getLinkedinAddress(),cv.getCoverLetter(),this.fileService.upload(cv.getPhoto()),cv.getCvTitle(),jobSeeker);
 		
 		cvDao.save(cvToAdd);
 		

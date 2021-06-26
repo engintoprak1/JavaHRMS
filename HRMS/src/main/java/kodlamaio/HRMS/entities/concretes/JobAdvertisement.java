@@ -53,6 +53,12 @@ public class JobAdvertisement {
 	@Column(name="working_time")
 	private int workingTime;
 	
+	@Column(name="working_type")
+	private int workingType;
+	
+	@Column(name="approved")
+	private boolean approved;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "city_id")
 	private City city;
@@ -66,7 +72,7 @@ public class JobAdvertisement {
 	private Employer employer;
 	
 	public JobAdvertisement(String jobDescription, double maxSalary, double minSalary, int openPositionCount,
-			Date applicationDeadline,boolean isActive,City city, JobPosition jobPosition, Employer employer,int workingTime) {
+			Date applicationDeadline,boolean isActive,City city, JobPosition jobPosition, Employer employer,int workingTime,int workingType,boolean approved) {
 		super();
 		this.jobDescription = jobDescription;
 		this.maxSalary = maxSalary;
@@ -79,6 +85,8 @@ public class JobAdvertisement {
 		this.isActive = isActive;
 		this.createDate = new Date();
 		this.workingTime = workingTime;
+		this.workingType = workingType;
+		this.approved = approved;
 	}
 
 }

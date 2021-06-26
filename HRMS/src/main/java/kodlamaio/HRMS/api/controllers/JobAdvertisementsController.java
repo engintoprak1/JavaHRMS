@@ -66,6 +66,11 @@ public class JobAdvertisementsController {
 		return this.jobAdvertisementService.getByIsActiveTrueAndEmployer_UserId(userId);
 	}
 	
+	@GetMapping("/findByApprovedTrueAndIsActiveTrue")
+	public DataResult<List<JobAdvertisement>> findByApprovedTrueAndIsActiveTrue(){
+		return this.jobAdvertisementService.findByApprovedTrueAndIsActiveTrue();
+	}
+	
 	@PutMapping("/closeAdvertisement")
 	public Result closeAdvertisement(int id, int userId) {
 		return this.jobAdvertisementService.closeAdvertisement(id, userId);

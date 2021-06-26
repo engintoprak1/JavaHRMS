@@ -20,5 +20,7 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getByIsActiveTrueAndEmployer_UserId(int employer_id);
 	
 	Result closeAdvertisement(int id, int userId);
+	
+	DataResult<List<JobAdvertisement>> findByApprovedTrueAndIsActiveTrue();
 
 }
